@@ -117,4 +117,9 @@ public partial class CalculationPage
         LayoutTugIn.IsVisible = false;
         LayoutTugOut.IsVisible = false;
     }
+    
+    private void OnScrollViewTapped(object sender, TappedEventArgs e)
+    {
+        EntryGrossTon.Unfocus();
+    }
 }
