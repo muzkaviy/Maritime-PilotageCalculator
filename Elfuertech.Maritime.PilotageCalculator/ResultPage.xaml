@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Elfuertech.Maritime.PilotageCalculator.ResultPage">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label x:Name="LblSummary" FontAttributes="Bold" FontSize="Medium" />
+            <Label x:Name="LblError" FontAttributes="Bold" FontSize="Medium" TextColor="DarkRed" IsVisible="False" />
+            <Label x:Name="LblInOut" Text=""/>
+            <Label x:Name="LblPilotage" Text=""/>
+            <Label x:Name="LblMooring" Text=""/>
+            <Label x:Name="LblTug" Text=""/>
+            <Label x:Name="LblShiftMain" Text=""/>
+            <Label x:Name="LblShiftNoMain" Text=""/>
+
+            <Button Text="Tekrar Hesapla" Clicked="OnRecalculateClicked" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
