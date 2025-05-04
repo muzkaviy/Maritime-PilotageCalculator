@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Elfuertech.PilotageCalculator.CalculationPage">
+    <ScrollView>
+        <ScrollView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnScrollViewTapped"/>
+        </ScrollView.GestureRecognizers>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <HorizontalStackLayout x:Name="PortRadioGroup" Spacing="20">
+                <RadioButton Content="Tuzla" GroupName="PortGroup" Value="Tuzla"
+                             CheckedChanged="OnPortSelectionChanged" />
+                <RadioButton Content="Yalova" GroupName="PortGroup" Value="Yalova"
+                             CheckedChanged="OnPortSelectionChanged" />
+            </HorizontalStackLayout>
+
+            <Grid x:Name="GridShippingType"
+                  ColumnDefinitions="*,*"
+                  RowDefinitions="Auto,Auto,Auto"
+                  Padding="10"
+                  ColumnSpacing="20"
+                  RowSpacing="10">
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                       Text="Gemi Tipi"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Start" />
+                <RadioButton Grid.Row="1" Grid.Column="0"
+                             Content="RO-RO, Yolcu Gemileri"
+                             GroupName="ShippingTypeGroup"
+                             Value="RoRo" />
+                <RadioButton Grid.Row="1" Grid.Column="1"
+                             Content="Kabotaj Hattı"
+                             GroupName="ShippingTypeGroup"
+                             Value="CabotageLine" />
+                <RadioButton Grid.Row="2" Grid.Column="0"
+                             Content="Konteyner Gemileri"
+                             GroupName="ShippingTypeGroup"
+                             Value="Container" />
+                <RadioButton Grid.Row="2" Grid.Column="1"
+                             Content="Diğer Yük Gemileri"
+                             GroupName="ShippingTypeGroup"
+                             Value="Other" />
+            </Grid>
+
+            <Entry x:Name="EntryGrossTon" Placeholder="Grosston" Keyboard="Numeric" />
+
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+                  Padding="10"
+                  ColumnSpacing="20"
+                  RowSpacing="10">
+                <HorizontalStackLayout Grid.Row="0" Grid.Column="0">
+                    <CheckBox x:Name="ChkHazardous" />
+                    <Label Text="Tehlikeli Madde" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Row="0" Grid.Column="1">
+                    <CheckBox x:Name="ChkFailure" />
+                    <Label Text="Makine Arızası" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Row="1" Grid.Column="0">
+                    <CheckBox x:Name="ChkHoliday" />
+                    <Label Text="Resmi Tatil" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Row="1" Grid.Column="1">
+                    <CheckBox x:Name="ChkMaintenance" />
+                    <Label Text="Bakım Durumu" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Row="2" Grid.Column="0">
+                    <CheckBox x:Name="ChkTurkishFlag" />
+                    <Label Text="Türk Bayraklı" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Grid.Row="2" Grid.Column="1">
+                    <CheckBox x:Name="ChkShifting" />
+                    <Label Text="On-site Shifting" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout x:Name="LayoutGasFree" Grid.Row="3" Grid.Column="0" IsVisible="False">
+                    <CheckBox x:Name="ChkGasFree" />
+                    <Label Text="Gas Free" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout x:Name="LayoutCancel" Grid.Row="3" Grid.Column="1" IsVisible="False">
+                    <CheckBox x:Name="ChkCancel" />
+                    <Label Text="Manevra İptali" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout x:Name="LayoutTugIn" Grid.Row="4" Grid.Column="0" IsVisible="False">
+                    <Entry x:Name="EntryTugIn" Placeholder="Girişte Ek Römorkör" Keyboard="Numeric" />
+                </HorizontalStackLayout>
+                <HorizontalStackLayout x:Name="LayoutTugOut" Grid.Row="4" Grid.Column="1" IsVisible="False">
+                    <Entry x:Name="EntryTugOut" Placeholder="Çıkışta Ek Römorkör" Keyboard="Numeric" />
+                </HorizontalStackLayout>
+            </Grid>
+
+            <Button Text="Hesapla" Clicked="OnCalculateClicked" />
+            <Button Text="Temizle" Clicked="OnClearClicked" BackgroundColor="LightGray" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
