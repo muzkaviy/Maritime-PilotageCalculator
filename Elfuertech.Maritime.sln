@@ -2,6 +2,11 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elfuertech.PilotageCalculator", "Elfuertech.PilotageCalculator\Elfuertech.PilotageCalculator.csproj", "{161CDC58-ADD6-4E1D-8F23-BAC949C1F5B3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{62E91E69-1395-484F-A8C8-C12A40D81AD7}"
+	ProjectSection(SolutionItems) = preProject
+		keytool and publish maui android.sh = keytool and publish maui android.sh
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

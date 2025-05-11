@@ -1,25 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net8.0-android;net8.0-ios;net8.0-maccatalyst</TargetFrameworks>
+        <TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
         <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
-        <!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-        <!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
-
-        <!-- Note for MacCatalyst:
-        The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
-        When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
-        The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
-        either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
-        <!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
-
         <OutputType>exe</OutputType>
         <RootNamespace>Elfuertech.PilotageCalculator</RootNamespace>
         <UseMaui>true</UseMaui>
         <SingleProject>true</SingleProject>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AndroidPackageFormat>aab</AndroidPackageFormat>
 
         <!-- Display name -->
         <ApplicationTitle>Pilotaj/Manevra Hesaplayıcı</ApplicationTitle>
@@ -28,25 +17,31 @@
         <ApplicationId>com.elfuertech.pilotagecalculator</ApplicationId>
 
         <!-- Versions -->
-        <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
-        <ApplicationVersion>1</ApplicationVersion>
+        <ApplicationDisplayVersion>3.0</ApplicationDisplayVersion>
+        <ApplicationVersion>3</ApplicationVersion>
 
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
-        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
-        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
-        <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
-        <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+    </PropertyGroup>
 
+    <PropertyGroup>
         <JavaSdkDirectory>/Users/ozgur/jdk-11.0.27+6/Contents/Home</JavaSdkDirectory>
     </PropertyGroup>
 
-    <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net8.0-android'">
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+        <AndroidPackageFormat>aab</AndroidPackageFormat>
         <AndroidKeyStore>true</AndroidKeyStore>
+        <AndroidSigningKeyStore>/Users/ozgur/Projectos/Elfuertech.Maritime/Elfuertech.PilotageCalculator/Platforms/Android/ozgur-elfuertech-pilotage-calculator.keystore</AndroidSigningKeyStore>
+        <AndroidSigningStorePass>123456</AndroidSigningStorePass>
         <AndroidSigningKeyAlias>ozgur-elfuertech-pilotage-calculator</AndroidSigningKeyAlias>
         <AndroidSigningKeyPass>123456</AndroidSigningKeyPass>
-        <AndroidSigningStorePass>123456</AndroidSigningStorePass>
-        <AndroidSigningStore>$(MSBuildThisFileDirectory)Platforms/Android/ozgur-elfuertech-pilotage-calculator.keystore</AndroidSigningStore>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+<!--        <CodesignKey>Apple Development: Hasan ozgur Guclu (FZ5MQT5CA5)</CodesignKey>-->
+<!--        <CodesignProvision>elfuertech-ozgur-profile</CodesignProvision>-->
+        <CodesignKey>Apple Distribution: Hasan ozgur Guclu (6LLGC5LRG4)</CodesignKey>
+        <CodesignProvision>elfuertech-pilotage-calculator-distribution</CodesignProvision>
     </PropertyGroup>
 
     <ItemGroup>
